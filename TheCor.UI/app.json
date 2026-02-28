@@ -4,7 +4,7 @@
 		"slug": "TheCorOfFitness",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "",
+		"icon": "./assets/images/the_cor_white.png",
 		"userInterfaceStyle": "light",
 		"splash": {
 			"image": "",
