@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# Expo/build outputs
+.expo/
+dist/
+web-build/
+
+# native generated folders
+android/
+ios/
+.kotlin/
+
+# Metro
+.metro-health-check*
+
+# local env files
+.env*.local
+
+# misc generated files
+*.tsbuildinfo
+.DS_Store
