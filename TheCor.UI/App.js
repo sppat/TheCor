@@ -4,6 +4,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import AppTabNavigator from './navigation/AppTabNavigator';
 import color from './constants/color';
+import spacing from './constants/spacing';
 
 export default function App() {
 	return (
@@ -24,5 +25,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: color.primaryBackground,
+		paddingHorizontal: spacing.padding.pageHorizontal
 	},
 });
