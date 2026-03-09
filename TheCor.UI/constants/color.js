@@ -5,6 +5,7 @@ const color = {
 	primaryText: '#ffffff',
 	secondaryText: '#9ca3af',
 	cardIconBackground: '#ca8a04',
+	cardBorder: '#ca8a04',
 	bottomTabActive: '#eab308',
 };
 
