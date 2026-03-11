@@ -6,16 +6,16 @@ import spacing from '../constants/spacing';
 
 const UPCOMING_CLASSES = [
 	{
-		id: 'yoga-1',
-		className: 'Yoga Class',
+		id: 'personal-training',
+		className: 'Personal Training',
 		classDateTime: '10:00 AM - 11:00 AM',
-		instructorName: 'John Doe',
+		instructorName: 'Fotis Lempesis',
 	},
 	{
-		id: 'pilates-1',
-		className: 'Pilates Session',
+		id: 'group-training',
+		className: 'Group Training',
 		classDateTime: '2:00 PM - 3:00 PM',
-		instructorName: 'Jane Smith',
+		instructorName: 'Kostas Lempesis',
 	}
 ];
 
