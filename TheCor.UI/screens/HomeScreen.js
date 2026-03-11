@@ -48,11 +48,13 @@ export default function HomeScreen({ navigation }) {
 					style={styles.bookingList}
 				/>
 			</View>
-			<View style={styles.sectionHeaderRow}>
-				<Text style={styles.header}>Today's Schedule</Text>
-				<Pressable onPress={openMyBookings}>
-					<Text style={styles.viewAll}>View All</Text>
-				</Pressable>
+			<View>
+				<View style={styles.sectionHeaderRow}>
+					<Text style={styles.header}>Today's Schedule</Text>
+					<Pressable onPress={openMyBookings}>
+						<Text style={styles.viewAll}>View All</Text>
+					</Pressable>
+				</View>
 			</View>
 		</View>
 	);
