@@ -1,8 +1,6 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import BookingCard from '../components/BookingCard';
-import EmptyCard from '../components/EmptyCard';
+import { StyleSheet, View } from 'react-native';
+import ScheduleSection from '../components/ScheduleSection';
 import color from '../constants/color';
-import typography from '../constants/typography';
 import spacing from '../constants/spacing';
 
 const UPCOMING_CLASSES = [
@@ -17,10 +15,51 @@ const UPCOMING_CLASSES = [
 		className: 'Group Training',
 		classDateTime: 'Thu, Mar 19 • 2:00 PM',
 		instructorName: 'Kostas Lempesis',
+	}
+];
+
+const TODAY_SCHEDULE = [
+	{
+		id: 'personal-training',
+		className: 'Personal Training',
+		classDateTime: 'Wed, Mar 18 • 10:00 AM',
+		instructorName: 'Fotis Lempesis',
+	},
+	{
+		id: 'group-training',
+		className: 'Group Training',
+		classDateTime: 'Thu, Mar 19 • 2:00 PM',
+		instructorName: 'Kostas Lempesis',
+	}, {
+		id: 'personal-training-',
+		className: 'Personal Training',
+		classDateTime: 'Wed, Mar 18 • 10:00 AM',
+		instructorName: 'Fotis Lempesis',
+	},
+	{
+		id: 'group-training-',
+		className: 'Group Training',
+		classDateTime: 'Thu, Mar 19 • 2:00 PM',
+		instructorName: 'Kostas Lempesis',
 	},
 ];
 
-const TODAY_SCHEDULE = [];
+const HOME_SECTIONS = [
+	{
+		id: 'upcoming-classes',
+		title: 'Upcoming Classes',
+		data: UPCOMING_CLASSES,
+		emptyMessage: 'No upcoming classes booked.',
+		emptyIcon: 'calendar',
+	},
+	{
+		id: 'today-schedule',
+		title: "Today's Schedule",
+		data: TODAY_SCHEDULE,
+		emptyMessage: 'No classes scheduled for today.',
+		emptyIcon: 'calendar',
+	},
+];
 
 export default function HomeScreen({ navigation }) {
 	function openMyBookings() {
@@ -29,65 +68,17 @@ export default function HomeScreen({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<View>
-				<View style={styles.sectionHeaderRow}>
-					<Text style={styles.header}>Upcoming Classes</Text>
-					<Pressable onPress={openMyBookings}>
-						<Text style={styles.viewAll}>View All</Text>
-					</Pressable>
-				</View>
-				{UPCOMING_CLASSES.length === 0 ? (
-					<EmptyCard message='No upcoming classes booked.' image='calendar' />
-				) : (
-					<FlatList
-						data={UPCOMING_CLASSES}
-						keyExtractor={(item) => item.id}
-						renderItem={({ item }) => (
-							<BookingCard
-								className={item.className}
-								classDateTime={item.classDateTime}
-								instructorName={item.instructorName}
-							/>
-						)}
-						ItemSeparatorComponent={() => (
-							<View style={styles.bookingCardSeparator} />
-						)}
-						scrollEnabled={false}
-						style={styles.bookingList}
-					/>
-				)}
-			</View>
-			<View style={styles.nextSection}>
-				<View style={styles.sectionHeaderRow}>
-					<Text style={styles.header}>Today's Schedule</Text>
-					<Pressable onPress={openMyBookings}>
-						<Text style={styles.viewAll}>View All</Text>
-					</Pressable>
-				</View>
-				{TODAY_SCHEDULE.length === 0 ? (
-					<EmptyCard
-						message='No classes scheduled for today.'
-						image='calendar'
-					/>
-				) : (
-					<FlatList
-						data={TODAY_SCHEDULE}
-						keyExtractor={(item) => item.id}
-						renderItem={({ item }) => (
-							<BookingCard
-								className={item.className}
-								classDateTime={item.classDateTime}
-								instructorName={item.instructorName}
-							/>
-						)}
-						ItemSeparatorComponent={() => (
-							<View style={styles.bookingCardSeparator} />
-						)}
-						scrollEnabled={false}
-						style={styles.bookingList}
-					/>
-				)}
-			</View>
+			{HOME_SECTIONS.map((section, index) => (
+				<ScheduleSection
+					key={section.id}
+					title={section.title}
+					data={section.data}
+					emptyMessage={section.emptyMessage}
+					emptyIcon={section.emptyIcon}
+					onPressViewAll={openMyBookings}
+					containerStyle={index === 0 ? null : styles.nextSection}
+				/>
+			))}
 		</View>
 	);
 }
@@ -97,25 +88,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: color.primaryBackground,
 		padding: spacing.padding.screen,
-	},
-	sectionHeaderRow: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
-	header: {
-		fontSize: typography.fontSize['text-xxl'],
-		color: color.primaryText,
-	},
-	viewAll: {
-		color: color.cardIconBackground,
-		fontWeight: typography.fontWeight['font-semibold'],
-	},
-	bookingList: {
-		marginTop: 12,
-	},
-	bookingCardSeparator: {
-		height: 12,
 	},
 	nextSection: {
 		marginTop: spacing.padding.screen,
